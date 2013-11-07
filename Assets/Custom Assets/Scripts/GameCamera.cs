@@ -3,8 +3,12 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour {
 	
-	public Transform target;
 	public float distanceFromPlayer;
+	public float rotationSpeed;
+	
+	private Quaternion _lookRotation;
+	private Vector3 _lookDirection;
+	private Transform target;
 	
 	GameObject firePlane, waterPlane, earthPlane, windPlane;
 
@@ -14,6 +18,7 @@ public class GameCamera : MonoBehaviour {
 		waterPlane = GameObject.Find ("WaterPlane");
 		earthPlane = GameObject.Find ("EarthPlane");
 		windPlane  = GameObject.Find ("WindPlane");
+		target = firePlane.transform;
 	}
 	
 	// Update is called once per frame
@@ -27,24 +32,33 @@ public class GameCamera : MonoBehaviour {
 		 */
 		
 		if (Input.GetKey(KeyCode.Alpha1)) {
-			lookAtEarthPlane();
+			target = earthPlane.transform;
+//			lookAtEarthPlane();
 		}
 		
 		if (Input.GetKey(KeyCode.Alpha2)) {
-			lookAtFirePlane();
+			target = firePlane.transform;
+//			lookAtFirePlane();
 		}
 		
 		if (Input.GetKey(KeyCode.Alpha3)) {
-			lookAtWindPlane();
+			target = windPlane.transform;
+//			lookAtWindPlane();
 		}
 		
 		if (Input.GetKey(KeyCode.Alpha4)) {
-			lookAtWaterPlane();
+			target = waterPlane.transform;
+//			lookAtWaterPlane();
 		}
+		
+		_lookDirection = (target.position - transform.position).normalized;
+		_lookRotation  = Quaternion.LookRotation(_lookDirection);
+		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
 	}
 	
 	private void lookAtFirePlane() {
-		transform.LookAt(firePlane.transform.position);
+//		transform.LookAt(firePlane.transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(firePlane.transform.position.normalized), 1000);
 	}
 	
 	private void lookAtEarthPlane() {
