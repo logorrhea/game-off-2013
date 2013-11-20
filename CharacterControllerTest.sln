@@ -11,6 +11,8 @@ Project("{C343AD45-42AF-E9AE-919A-8260DC1C8B5B}") = "CharacterControllerTest", "
 EndProject
 Project("{C343AD45-42AF-E9AE-919A-8260DC1C8B5B}") = "CharacterControllerTest", "Assembly-UnityScript-Editor-firstpass.unityproj", "{0FC79E08-6EC8-D262-C54C-C48A909A38C5}"
 EndProject
+Project("{C343AD45-42AF-E9AE-919A-8260DC1C8B5B}") = "CharacterControllerTest", "Assembly-UnityScript-Editor.unityproj", "{47AE5806-226D-A28E-4BD8-BA3E39C80F3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,11 +39,15 @@ Global
 		{0FC79E08-6EC8-D262-C54C-C48A909A38C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC79E08-6EC8-D262-C54C-C48A909A38C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC79E08-6EC8-D262-C54C-C48A909A38C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47AE5806-226D-A28E-4BD8-BA3E39C80F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47AE5806-226D-A28E-4BD8-BA3E39C80F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47AE5806-226D-A28E-4BD8-BA3E39C80F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47AE5806-226D-A28E-4BD8-BA3E39C80F3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																											GlobalSection(MonoDevelopProperties) = preSolution
+																													GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
