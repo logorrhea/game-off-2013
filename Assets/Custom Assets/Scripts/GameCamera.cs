@@ -18,10 +18,10 @@ public class GameCamera : MonoBehaviour {
 	/**
 	 * Shooting-related stuffs
 	 */
-	private int lastFire = -1;
-	private int fireBreak = 5;
+	private int _lastFire = -1;
+	private int _fireBreak = 5;
 	
-	private Vector3 shootDirection = Vector3.zero;
+	private Vector3 _shootDirection = Vector3.zero;
 	
 	public GameObject bullets;
 	public float BULLET_SPEED = 60.0f;
@@ -54,22 +54,32 @@ public class GameCamera : MonoBehaviour {
 			target = waterPlane.transform;
 		}
 		
+		_lookDirection = (target.position - transform.position).normalized;
+		_lookRotation  = Quaternion.LookRotation(_lookDirection);
+		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
 		
 		/**
 		 * Check for shoosting inputs
 		 */
-		if (Input.GetButton("Fire1") && (Time.frameCount - lastFire > fireBreak)) {
-			shootDirection = camera.ScreenToWorldPoint(new Vector3(
+		if (Input.GetButton("Fire1") && (Time.frameCount - _lastFire > _fireBreak)) {
+			_shootDirection = camera.ScreenToWorldPoint(new Vector3(
 				Input.mousePosition.x,
 				Input.mousePosition.y,
 				camera.farClipPlane)).normalized;
-			GameObject newBullet = (GameObject) Instantiate(bullets, transform.position + shootDirection, transform.rotation);
-			newBullet.rigidbody.velocity = shootDirection * BULLET_SPEED;
-			lastFire = Time.frameCount;
+			GameObject newBullet = (GameObject) Instantiate(
+				bullets,
+				transform.position + lineToTarget(),
+				transform.rotation);
+			newBullet.rigidbody.velocity = _shootDirection * BULLET_SPEED;
+			_lastFire = Time.frameCount;
 		}
-		
-		_lookDirection = (target.position - transform.position).normalized;
-		_lookRotation  = Quaternion.LookRotation(_lookDirection);
-		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
+	}
+	
+	private string vector3String(Vector3 v) {
+		return "(" + v.x + "," + v.y + "," + v.z + ")";
+	}
+	
+	private Vector3 lineToTarget() {
+		return (target.transform.position - transform.position).normalized;
 	}
 }

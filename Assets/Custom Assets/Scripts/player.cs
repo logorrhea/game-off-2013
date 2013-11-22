@@ -44,7 +44,7 @@ public class player : MonoBehaviour {
 //		}
 		
 //		Debug.Log ("MousePosition: [" + Input.mousePosition.x + "," + Input.mousePosition.y + "]");
-		Vector3 screenPos = mainCamera.camera.WorldToScreenPoint(this.transform.position);
+//		Vector3 screenPos = mainCamera.camera.WorldToScreenPoint(this.transform.position);
 //		Debug.Log ("CameraPosition: [" + screenPos.x + "," + screenPos.y + "]");
 //		Debug.Log ("PixelDims: [" + mainCamera.camera.pixelWidth + "," + mainCamera.camera.pixelHeight + "]");
 		
