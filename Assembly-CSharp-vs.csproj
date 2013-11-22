@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Custom Assets\Scripts\GameCamera.cs" />
-     <Compile Include="Assets\Custom Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Custom Assets\Scripts\bullet.cs" />
      <Compile Include="Assets\Custom Assets\Scripts\camera.cs" />
      <Compile Include="Assets\Custom Assets\Scripts\enemy.cs" />

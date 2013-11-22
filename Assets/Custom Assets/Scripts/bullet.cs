@@ -15,6 +15,9 @@ public class bullet : MonoBehaviour {
 		if (hasLeftScreen()) {
 			Destroy(this.gameObject);
 		}
+		if (isPastFarPlane()) {
+			Destroy (this.gameObject);	
+		}
 	}
 	
 	void OnCollisionEnter(Collision collision) {
@@ -32,5 +35,10 @@ public class bullet : MonoBehaviour {
 		} else {
 			return false;
 		}
+	}
+	
+	bool isPastFarPlane() {
+		float dist = Mathf.Abs(Vector3.Distance(transform.position, mainCamera.transform.position));
+		return dist > mainCamera.camera.farClipPlane;
 	}
 }

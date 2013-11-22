@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour {
 	
+	/**
+	 * Camera-related stuffs
+	 */
 	public float distanceFromPlayer;
 	public float rotationSpeed;
 	
@@ -11,6 +14,17 @@ public class GameCamera : MonoBehaviour {
 	private Transform target;
 	
 	GameObject firePlane, waterPlane, earthPlane, windPlane;
+	
+	/**
+	 * Shooting-related stuffs
+	 */
+	private int lastFire = -1;
+	private int fireBreak = 5;
+	
+	private Vector3 shootDirection = Vector3.zero;
+	
+	public GameObject bullets;
+	public float BULLET_SPEED = 60.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,51 +39,37 @@ public class GameCamera : MonoBehaviour {
 	void Update () {
 		
 		/**
-		 * Objectives
-		 * ==========
-		 * - Focus on one region of the map at a time
-		 * - Listen for the events that change focus to a new region of the map
+		 * Check for look-around inputs
 		 */
-		
 		if (Input.GetKey(KeyCode.Alpha1)) {
 			target = earthPlane.transform;
-//			lookAtEarthPlane();
 		}
-		
 		if (Input.GetKey(KeyCode.Alpha2)) {
 			target = firePlane.transform;
-//			lookAtFirePlane();
 		}
-		
 		if (Input.GetKey(KeyCode.Alpha3)) {
 			target = windPlane.transform;
-//			lookAtWindPlane();
 		}
-		
 		if (Input.GetKey(KeyCode.Alpha4)) {
 			target = waterPlane.transform;
-//			lookAtWaterPlane();
+		}
+		
+		
+		/**
+		 * Check for shoosting inputs
+		 */
+		if (Input.GetButton("Fire1") && (Time.frameCount - lastFire > fireBreak)) {
+			shootDirection = camera.ScreenToWorldPoint(new Vector3(
+				Input.mousePosition.x,
+				Input.mousePosition.y,
+				camera.farClipPlane)).normalized;
+			GameObject newBullet = (GameObject) Instantiate(bullets, transform.position + shootDirection, transform.rotation);
+			newBullet.rigidbody.velocity = shootDirection * BULLET_SPEED;
+			lastFire = Time.frameCount;
 		}
 		
 		_lookDirection = (target.position - transform.position).normalized;
 		_lookRotation  = Quaternion.LookRotation(_lookDirection);
 		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
-	}
-	
-	private void lookAtFirePlane() {
-//		transform.LookAt(firePlane.transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(firePlane.transform.position.normalized), 1000);
-	}
-	
-	private void lookAtEarthPlane() {
-		transform.LookAt(earthPlane.transform.position);
-	}
-	
-	private void lookAtWindPlane() {
-		transform.LookAt(windPlane.transform.position);
-	}
-	
-	private void lookAtWaterPlane() {
-		transform.LookAt(waterPlane.transform.position);
 	}
 }
