@@ -602,6 +602,8 @@ MonoBehaviour:
   m_Name: 
   distanceFromPlayer: 0
   rotationSpeed: 2.02999997
+  bullets: {fileID: 100000, guid: da43221be235f4fad9ee68f555ddb96d, type: 2}
+  BULLET_SPEED: 60
 --- !u!114 &593526002
 MonoBehaviour:
   m_ObjectHideFlags: 0
