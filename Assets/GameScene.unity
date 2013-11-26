@@ -648,8 +648,8 @@ MonoBehaviour:
   m_Name: 
   distanceFromPlayer: 0
   rotationSpeed: 5.03000021
-  bullets: {fileID: 100000, guid: da43221be235f4fad9ee68f555ddb96d, type: 2}
-  BULLET_SPEED: 60
+  leftCannon: {fileID: 1159071741}
+  rightCannon: {fileID: 1071557665}
 --- !u!114 &593526002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1180,7 @@ GameObject:
   - 33: {fileID: 1071557664}
   - 136: {fileID: 1071557663}
   - 23: {fileID: 1071557662}
+  - 114: {fileID: 1071557665}
   m_Layer: 0
   m_Name: rightCannon
   m_TagString: Untagged
@@ -1239,6 +1240,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1747872230}
   m_GameObject: {fileID: 1071557660}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1071557665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 68eb0825da7734648b1979351df86c56,
+    type: 2}
+  m_PrefabInternal: {fileID: 1747872230}
+  m_GameObject: {fileID: 1071557660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4639e600eaffb4f6aaba27f492340682, type: 3}
+  m_Name: 
+  bullets: {fileID: 100000, guid: da43221be235f4fad9ee68f555ddb96d, type: 2}
+  BULLET_SPEED: 60
 --- !u!1 &1104991300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1330,7 @@ GameObject:
   - 33: {fileID: 1159071740}
   - 136: {fileID: 1159071739}
   - 23: {fileID: 1159071738}
+  - 114: {fileID: 1159071741}
   m_Layer: 0
   m_Name: leftCannon
   m_TagString: Untagged
@@ -1375,6 +1390,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 398485543}
   m_GameObject: {fileID: 1159071736}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1159071741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 68eb0825da7734648b1979351df86c56,
+    type: 2}
+  m_PrefabInternal: {fileID: 398485543}
+  m_GameObject: {fileID: 1159071736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4639e600eaffb4f6aaba27f492340682, type: 3}
+  m_Name: 
+  bullets: {fileID: 100000, guid: da43221be235f4fad9ee68f555ddb96d, type: 2}
+  BULLET_SPEED: 60
 --- !u!1 &1382590442
 GameObject:
   m_ObjectHideFlags: 0
