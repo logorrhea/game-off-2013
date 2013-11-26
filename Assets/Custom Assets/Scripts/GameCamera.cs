@@ -17,14 +17,15 @@ public class GameCamera : MonoBehaviour {
 	
 	/**
 	 * Shooting-related stuffs
+	 * 
+	 * alternator: false means left cannon, true is right cannon
 	 */
 	private int _lastFire = -1;
 	private int _fireBreak = 5;
-	
+	private bool alternator = false; 
 	private Vector3 _shootDirection = Vector3.zero;
+	public Cannon leftCannon, rightCannon;
 	
-	public GameObject bullets;
-	public float BULLET_SPEED = 60.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -66,20 +67,17 @@ public class GameCamera : MonoBehaviour {
 				Input.mousePosition.x,
 				Input.mousePosition.y,
 				camera.farClipPlane)).normalized;
-			GameObject newBullet = (GameObject) Instantiate(
-				bullets,
-				transform.position + lineToTarget(),
-				transform.rotation);
-			newBullet.rigidbody.velocity = _shootDirection * BULLET_SPEED;
+			if (alternator) {
+				leftCannon.fire(_shootDirection, target);
+			} else {
+				rightCannon.fire(_shootDirection, target);	
+			}
+			alternator = !alternator;
 			_lastFire = Time.frameCount;
 		}
 	}
 	
 	private string vector3String(Vector3 v) {
 		return "(" + v.x + "," + v.y + "," + v.z + ")";
-	}
-	
-	private Vector3 lineToTarget() {
-		return (target.transform.position - transform.position).normalized;
 	}
 }
